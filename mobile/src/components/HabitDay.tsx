@@ -35,11 +35,11 @@ export function HabitDay({ date, amount = 0, completed = 0, ...rest }: Props) {
         "bg-violet-900 border-violet-700":
           amountPercentage > 0 && amountPercentage < 20,
         "bg-violet-800 border-violet-600":
-          amountPercentage > 20 && amountPercentage < 40,
+          amountPercentage >= 20 && amountPercentage < 40,
         "bg-violet-700 border-violet-500":
-          amountPercentage > 40 && amountPercentage < 60,
+          amountPercentage >= 40 && amountPercentage < 60,
         "bg-violet-600 border-violet-500":
-          amountPercentage > 60 && amountPercentage < 80,
+          amountPercentage >= 60 && amountPercentage < 80,
         "bg-violet-500 border-violet-400": amountPercentage > 80,
         "border-zinc-500 border-2": isCurrentDay,
       })}
