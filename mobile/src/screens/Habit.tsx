@@ -31,7 +31,6 @@ export function Habit() {
   const { date } = useRoute().params as Params;
 
   const parsedDate = dayjs(date).add(14, "hour");
-  console.log(parsedDate);
   const isDateInPast = parsedDate.endOf("day").isBefore(new Date());
   const dayOfWeek = parsedDate.format("dddd");
   const dayAndMonth = parsedDate.format("DD/MM");
@@ -53,8 +52,10 @@ export function Habit() {
           date: parsedDate.toISOString(),
         },
       });
-      console.log(JSON.stringify(response.data, null, 2));
-      setDayInfo(response.data);
+      if (response.data.possibleHabits.length > 0) {
+        setDayInfo(response.data);
+      }
+      console.log(response.data);
       setCompletedHabits(response.data.completedHabits);
     } catch (error) {
       console.log(error);
@@ -66,7 +67,6 @@ export function Habit() {
 
   async function handleToggleHabit(habitId: string) {
     try {
-      console.log(habitId);
       await api.patch(`habits/${habitId}/toggle`);
     } catch (error) {
       console.log(error);
